@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Suits | Bespoke Configurator</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-logo">SMART SUITS</div>
+  <div class="hdr-sub">Bespoke Suit Configurator</div>
+</header>
+
+<div class="layout">
+
+  <!-- LEFT NAV -->
+  <nav class="sidenav" id="sidenav">
+    <div class="snav-item" id="snav-garment" onclick="goStep('garment')">GARMENT TYPE</div>
+    <div class="snav-item" id="snav-fabric"  onclick="goStep('fabric')">FABRIC &amp; COLOUR</div>
+
+    <div class="snav-group" id="grp-jacket">
+      <div class="snav-head" onclick="toggleGrp('sub-jacket',this)">▸ JACKET STYLE</div>
+      <div class="snav-sub" id="sub-jacket">
+        <div class="snav-leaf" id="snav-jacket-style"  onclick="goStep('jacket-style')">Style / Buttons</div>
+        <div class="snav-leaf" id="snav-jacket-lapel"  onclick="goStep('jacket-lapel')">Lapel</div>
+        <div class="snav-leaf" id="snav-jacket-pocket" onclick="goStep('jacket-pocket')">Pockets</div>
+        <div class="snav-leaf" id="snav-jacket-vent"   onclick="goStep('jacket-vent')">Back Vent</div>
+      </div>
+    </div>
+
+    <div class="snav-group" id="grp-pant">
+      <div class="snav-head" onclick="toggleGrp('sub-pant',this)">▸ PANT STYLE</div>
+      <div class="snav-sub" id="sub-pant">
+        <div class="snav-leaf" id="snav-pant-fit"   onclick="goStep('pant-fit')">Fit / Style</div>
+        <div class="snav-leaf" id="snav-pant-pleat" onclick="goStep('pant-pleat')">Pleat</div>
+        <div class="snav-leaf" id="snav-pant-hem"   onclick="goStep('pant-hem')">Bottom / Cuffs</div>
+      </div>
+    </div>
+
+    <div class="snav-group" id="grp-vest">
+      <div class="snav-head" onclick="toggleGrp('sub-vest',this)">▸ VEST STYLE</div>
+      <div class="snav-sub" id="sub-vest">
+        <div class="snav-leaf" id="snav-vest-neck"    onclick="goStep('vest-neck')">Neckline</div>
+        <div class="snav-leaf" id="snav-vest-buttons" onclick="goStep('vest-buttons')">Buttons</div>
+      </div>
+    </div>
+
+    <div class="snav-group" id="grp-contrast">
+      <div class="snav-head" onclick="toggleGrp('sub-contrast',this)">▸ COLOUR CONTRAST</div>
+      <div class="snav-sub" id="sub-contrast">
+        <div class="snav-leaf" id="snav-lining"   onclick="goStep('lining')">Inner Lining</div>
+        <div class="snav-leaf" id="snav-monogram" onclick="goStep('monogram')">Monogram</div>
+      </div>
+    </div>
+
+    <div class="snav-item" id="snav-measurements" onclick="goStep('measurements')">MEASUREMENTS</div>
+  </nav>
+
+  <!-- CENTER CONTENT -->
+  <main class="content">
+    <div class="content-hdr">
+      <span class="step-badge" id="step-badge">STEP 1</span>
+      <h2 id="step-title">WHAT ARE YOU DESIGNING?</h2>
+      <p  id="step-desc"  class="step-desc">Choose the garment pieces you want to customise.</p>
+    </div>
+    <div class="content-body" id="content-body"></div>
+  </main>
+
+  <!-- RIGHT PREVIEW -->
+  <aside class="preview">
+    <div class="prev-label">LIVE PREVIEW</div>
+    <div class="prev-views">
+      <button class="vbtn active" id="vbtn-all" onclick="setView('all',this)">FULL SUIT</button>
+      <button class="vbtn" id="vbtn-jacket" onclick="setView('jacket',this)">JACKET</button>
+      <button class="vbtn" id="vbtn-pant"   onclick="setView('pant',this)">PANT</button>
+      <button class="vbtn" id="vbtn-vest"   onclick="setView('vest',this)">VEST</button>
+    </div>
+    <div class="prev-stage" id="prev-stage" style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; align-content:center; gap:5px;">
+      <canvas id="prev-canvas-jacket" style="max-height:92%; max-width:92%; display:none;"></canvas>
+      <canvas id="prev-canvas-pant" style="max-height:92%; max-width:92%; display:none;"></canvas>
+      <canvas id="prev-canvas-vest" style="max-height:92%; max-width:92%; display:none;"></canvas>
+      <div class="prev-badge" id="prev-badge">
+        <span class="color-dot" id="prev-color-dot"></span><span id="prev-fabric-name">Navy Blue</span>
+      </div>
+    </div>
+    <div class="prev-summary">
+      <div class="sum-row"><span>Garment</span><strong id="s-garment">3-Piece Suit</strong></div>
+      <div class="sum-row"><span>Fabric</span><strong id="s-fabric">Navy Blue</strong></div>
+      <div class="sum-row"><span>Jacket</span><strong id="s-jacket">Notch 2-Button</strong></div>
+      <div class="sum-row"><span>Pant</span><strong id="s-pant">Slim Flat Front</strong></div>
+      <div class="sum-row"><span>Vest</span><strong id="s-vest">V-Neck 5 Btn</strong></div>
+    </div>
+    <button class="cta-btn" onclick="sendOrder()">✔ SEND ORDER VIA WHATSAPP</button>
+  </aside>
+</div>
+
+<footer class="ftr">
+  <button class="ftr-btn back-btn" onclick="stepBack()">◄ BACK</button>
+  <div class="ftr-progress"><div class="ftr-bar" id="ftr-bar"></div></div>
+  <span class="ftr-counter" id="ftr-counter">Step 1 of 13</span>
+  <button class="ftr-btn next-btn" onclick="stepNext()">NEXT ►</button>
+</footer>
+
+<script src="js/assets.js"></script>
+<script src="js/ui-logic.js"></script>
+<script src="js/whatsapp.js"></script>
+</body>
+</html>
