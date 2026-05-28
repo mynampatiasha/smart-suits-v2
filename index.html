@@ -73,6 +73,13 @@
       <p  id="step-desc"  class="step-desc">Choose the garment pieces you want to customise.</p>
     </div>
     <div class="content-body" id="content-body"></div>
+    
+    <footer class="ftr">
+      <button class="ftr-btn back-btn" onclick="stepBack()">◄ BACK</button>
+      <div class="ftr-progress"><div class="ftr-bar" id="ftr-bar"></div></div>
+      <span class="ftr-counter" id="ftr-counter">Step 1 of 16</span>
+      <button class="ftr-btn next-btn" onclick="stepNext()">NEXT ►</button>
+    </footer>
   </main>
 
   <!-- RIGHT PREVIEW -->
@@ -101,14 +108,8 @@
     </div>
     <button class="cta-btn" onclick="sendOrder()">✔ SEND ORDER VIA WHATSAPP</button>
   </aside>
-</div>
 
-<footer class="ftr">
-  <button class="ftr-btn back-btn" onclick="stepBack()">◄ BACK</button>
-  <div class="ftr-progress"><div class="ftr-bar" id="ftr-bar"></div></div>
-  <span class="ftr-counter" id="ftr-counter">Step 1 of 13</span>
-  <button class="ftr-btn next-btn" onclick="stepNext()">NEXT ►</button>
-</footer>
+</div>
 
 <script src="js/assets.js"></script>
 <script src="js/ui-logic.js"></script>
