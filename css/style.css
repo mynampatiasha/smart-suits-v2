@@ -80,3 +80,64 @@ body{font-family:'Montserrat',sans-serif;background:var(--parchment);color:var(-
 .ftr-progress{flex:1;height:4px;background:#222;border-radius:2px;overflow:hidden;}
 .ftr-bar{height:100%;background:var(--gold);border-radius:2px;transition:width .4s ease;}
 .ftr-counter{color:#777;font-size:10px;white-space:nowrap;}
+
+/* Marquee / Carousel */
+.marquee-container {
+  background: var(--gold);
+  color: #000;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 6px 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border-bottom: 1px solid #111;
+  flex-shrink: 0;
+}
+.marquee span {
+  display: inline-block;
+  animation: marquee 20s linear infinite;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+  body { overflow: auto; height: auto; }
+  .layout { flex-direction: column; overflow: visible; }
+  
+  .hdr { padding: 0 15px; }
+  .hdr-logo { font-size: 14px; }
+  .hdr-sub { display: none; }
+  
+  .sidenav { 
+    width: 100%; min-width: 100%; 
+    display: flex; flex-direction: row; 
+    overflow-x: auto; overflow-y: hidden;
+    height: 44px; white-space: nowrap; 
+    border-bottom: 1px solid #222; order: 1; 
+  }
+  .sidenav::-webkit-scrollbar { height: 3px; }
+  .snav-item { padding: 15px 12px; border-left: none; border-bottom: 2px solid transparent; display: inline-block; }
+  .snav-item.active { border-left: none; border-bottom-color: var(--gold); }
+  
+  .snav-group { display: inline-flex; border-bottom: none; border-right: 1px solid #181818; }
+  .snav-head { display: none; } /* Flatten menu on mobile */
+  .snav-sub { display: flex !important; background: transparent; }
+  .snav-leaf { padding: 15px 12px; border-left: none; border-bottom: 2px solid transparent; display: inline-block; }
+  .snav-leaf.active { border-left: none; border-bottom-color: var(--gold); }
+  
+  .preview { width: 100%; min-width: 100%; height: 380px; border-left: none; border-bottom: 2px solid var(--gold); order: 2; }
+  .content { overflow: visible; min-height: auto; order: 3; }
+  .content-body { padding: 15px; }
+  
+  .garment-grid { grid-template-columns: 1fr; }
+  .style-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .text-grid { grid-template-columns: 1fr; gap: 8px; }
+  
+  .form-row { flex-direction: column; gap: 0; }
+  .form-group { margin-bottom: 12px; }
+  .cta-btn { margin: 10px 0; width: 100%; }
+}
