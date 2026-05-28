@@ -272,8 +272,11 @@ function updateGroups(){
 function updateFooter(){
   const steps=activeSteps();
   const pct=((curIdx+1)/steps.length*100).toFixed(0);
-  document.getElementById('ftr-bar').style.width=pct+'%';
-  document.getElementById('ftr-counter').textContent=`Step ${curIdx+1} of ${steps.length}`;
+  const bar = document.getElementById('ftr-bar');
+  if (bar) bar.style.width=pct+'%';
+  
+  const counter = document.getElementById('ftr-counter');
+  if (counter) counter.textContent=`Step ${curIdx+1} of ${steps.length}`;
   
   const nextBtn = document.querySelector('.next-btn');
   if(curIdx === steps.length - 1) {
@@ -612,3 +615,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   updateGroups();
   goStep('garment');
 });
+
+// ─── UTILS ───────────────────────────────────────────
+function toggleSidebar() {
+  const sidenav = document.getElementById('sidenav');
+  if (sidenav) sidenav.classList.toggle('collapsed');
+}

@@ -10,7 +10,10 @@
 <body>
 
   <header class="hdr">
-    <div class="hdr-logo">SRS SILK TRADERS</div>
+    <div style="display:flex; align-items:center; gap:15px;">
+      <button onclick="toggleSidebar()" style="background:none; border:none; color:var(--gold); font-size:22px; cursor:pointer;">☰</button>
+      <div class="hdr-logo">SRS SILK TRADERS</div>
+    </div>
     <div class="hdr-sub">Bespoke Suit Configurator</div>
   </header>
   
@@ -20,7 +23,7 @@
     </div>
   </div>
 
-  <main class="layout">
+  <div class="layout">
 
   <!-- LEFT NAV -->
   <nav class="sidenav" id="sidenav">
@@ -68,18 +71,18 @@
   <!-- CENTER CONTENT -->
   <main class="content">
     <div class="content-hdr">
-      <span class="step-badge" id="step-badge">STEP 1</span>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <span class="step-badge" id="step-badge">STEP 1</span>
+        <div class="top-nav" style="display:flex; align-items:center; gap:8px;">
+          <button class="ftr-btn back-btn" onclick="stepBack()">◄ BACK</button>
+          <span class="ftr-counter" id="ftr-counter" style="font-size:11px; font-weight:600; color:#555;">Step 1 of 16</span>
+          <button class="ftr-btn next-btn" onclick="stepNext()">NEXT ►</button>
+        </div>
+      </div>
       <h2 id="step-title">WHAT ARE YOU DESIGNING?</h2>
-      <p  id="step-desc"  class="step-desc">Choose the garment pieces you want to customise.</p>
+      <p id="step-desc" class="step-desc">Choose the garment pieces you want to customise.</p>
     </div>
     <div class="content-body" id="content-body"></div>
-    
-    <footer class="ftr">
-      <button class="ftr-btn back-btn" onclick="stepBack()">◄ BACK</button>
-      <div class="ftr-progress"><div class="ftr-bar" id="ftr-bar"></div></div>
-      <span class="ftr-counter" id="ftr-counter">Step 1 of 16</span>
-      <button class="ftr-btn next-btn" onclick="stepNext()">NEXT ►</button>
-    </footer>
   </main>
 
   <!-- RIGHT PREVIEW -->
